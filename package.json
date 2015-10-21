@@ -15,7 +15,8 @@
     "lodash": "^3.10.1",
     "mongoose": "^4.1.10",
     "morgan": "^1.6.1",
-    "shortid": "^2.2.2"
+    "shortid": "^2.2.2",
+    "express-session": "~1.11.3"
   },
   "devDependencies": {
     "chance": "^0.8.0",

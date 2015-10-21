@@ -38,9 +38,18 @@ router.post('/signup', function (req, res, next) {
 router.post('/login', function (req, res, next) {
 	User.findOne({email: req.body.email, password: req.body.password})
 	.then(function (user) {
+		console.log("user", user);
+		req.session.userId = user._id;
+		console.log(req.session);
 		res.json(user)
 	})
 	.then(null, next);
+})
+
+// logout
+router.post('/logout', function(req, res, next){
+	req.session.userId = null;
+	res.end("You are logged out")
 })
 
 router.get('/:id', function (req, res, next) {

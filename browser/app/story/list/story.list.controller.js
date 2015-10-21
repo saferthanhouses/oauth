@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('StoryListCtrl', function ($scope, stories, Story, users) {
+app.controller('StoryListCtrl', function ($scope, stories, Story, users, OauthFactory) {
 	$scope.stories = stories;
 	$scope.users = users;
 
