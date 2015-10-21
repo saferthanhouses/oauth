@@ -8,9 +8,10 @@ app.config(function ($stateProvider) {
 	});
 });
 
-app.controller('SignupCtrl', function($scope) {
+app.controller('SignupCtrl', function($scope, OauthFactory) {
 	$scope.signupSubmit = function() {
-		console.log($scope.email, $scope.password);
+		OauthFactory.signup($scope.email, $scope.password)
+		// console.log($scope.email, $scope.password);
 
 	}
 })

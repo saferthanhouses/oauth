@@ -24,13 +24,24 @@ router.get('/', function (req, res, next) {
 	.then(null, next);
 });
 
-router.post('/', function (req, res, next) {
+// signup
+router.post('/signup', function (req, res, next) {
+	// console.log("req.body", req.body)
 	User.create(req.body)
 	.then(function (user) {
 		res.status(201).json(user);
 	})
 	.then(null, next);
 });
+
+// login
+router.post('/login', function (req, res, next) {
+	User.findOne({email: req.body.email, password: req.body.password})
+	.then(function (user) {
+		res.json(user)
+	})
+	.then(null, next);
+})
 
 router.get('/:id', function (req, res, next) {
 	req.requestedUser.getStories()
