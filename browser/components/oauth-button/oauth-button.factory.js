@@ -1,13 +1,23 @@
 app.factory('OauthFactory', function ($http) {
 	OauthFactory = {}
 
-	OauthFactory.isLoggedIn = {}
+	OauthFactory.isLoggedIn = false;
+	// OauthFactory.currentUser = null;
+
+	$http.get('/api/users/auth/me')
+	.then(function (response) {
+		OauthFactory.isLoggedIn = response.data;
+	})
+
+	// WE ENDED SOMEWHERE AROUND HERE
+
 
 	OauthFactory.signup = function (email, password) {
 		$http.post('/api/users/signup', {email: email, password: password})
 		.then(function (response) {
 			console.log("signup", response.data)
-			this.isLoggedIn = response.data;
+			OauthFactory.isLoggedIn = true;
+			// this.currentUser = 
 		})
 	}
 
@@ -15,7 +25,8 @@ app.factory('OauthFactory', function ($http) {
 		$http.post('/api/users/login', {email: email, password: password})
 		.then(function (response) {
 			console.log("login", response.data)
-			this.isLoggedIn = response.data;
+			OauthFactory.isLoggedIn = true;
+			// this.currentUser = 
 		})
 	}
 
