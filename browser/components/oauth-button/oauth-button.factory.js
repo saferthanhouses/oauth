@@ -1,7 +1,8 @@
 app.factory('OauthFactory', function ($http) {
 	OauthFactory = {}
 
-	OauthFactory.isLoggedIn = {}
+	OauthFactory.isLoggedIn = nul
+	
 
 	OauthFactory.signup = function (email, password) {
 		$http.post('/api/users/signup', {email: email, password: password})
