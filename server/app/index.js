@@ -3,6 +3,7 @@
 var app = require('express')();
 var path = require('path');
 var session = require('express-session');
+var passport = require('passport');
 
 app.use(session({
     // this mandatory configuration ensures that session IDs are not predictable
@@ -10,22 +11,20 @@ app.use(session({
 }));
 
 app.use(function (req, res, next) {
-	// if (!req.session.id) {
-	// 	req.session.id = Math.random() * 100;
-	// }
-
-  // if (!req.session.counter) req.session.counter = 0;
-  // console.log('counter', ++req.session.counter);
-  // console.log("session", req.session)
   console.log(req.session);
   next();
 });
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(require('./logging.middleware'));
 
 app.use(require('./requestState.middleware'));
 
 app.use(require('./statics.middleware'));
+
+app.use('/auth', require('./auth.router'))
 
 app.use('/api', require('../api/api.router'));
 

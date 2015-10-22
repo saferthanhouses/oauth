@@ -5,7 +5,7 @@ app.factory('OauthFactory', function ($http) {
 	// OauthFactory.currentUser = null;
 
 	// check whether the session has already been logged in.
-	$http.get('/api/users/auth/me')
+	$http.get('/auth/me')
 	.then(function (response) {
 		OauthFactory.isLoggedIn = response.data;
 	})
@@ -31,6 +31,7 @@ app.factory('OauthFactory', function ($http) {
 	OauthFactory.logout = function() {
 		$http.post('api/users/logout', {})
 			.then(function(response){
+				OauthFactory.isLoggedIn = null;
 				console.log("logout", response.data);
 			})
 	}
