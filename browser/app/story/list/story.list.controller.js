@@ -3,8 +3,10 @@
 app.controller('StoryListCtrl', function ($scope, stories, Story, users, OauthFactory) {
 	$scope.stories = stories;
 	$scope.users = users;
-
 	$scope.newStory = new Story();
+	$scope.isLoggedIn = OauthFactory.isLoggedIn;
+
+	console.log("maybe logged in", $scope.isLoggedIn)
 	
 	$scope.removeStory = function (story) {
 		story.destroy()

@@ -52,6 +52,13 @@ router.post('/logout', function(req, res, next){
 	res.end("You are logged out")
 })
 
+// isLoggedIn?
+router.get('/auth/me', function (req, res, next) {
+	console.log("getting me")
+	console.log("req.session.userId", req.session.userId)
+	res.send(req.session.userId);
+})
+
 router.get('/:id', function (req, res, next) {
 	req.requestedUser.getStories()
 	.then(function (stories) {
